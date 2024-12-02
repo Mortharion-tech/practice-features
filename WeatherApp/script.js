@@ -1,31 +1,53 @@
+const coordinates = {
+    'New York': { lat: 40.7128, lon: -74.0060 },
+    'Los Angeles': { lat: 34.0522, lon: -118.2437 },
+    'London': { lat: 51.5074, lon: -0.1278 },
+    'Paris': { lat: 48.8566, lon: 2.3522 },
+    'Tokyo': { lat: 35.6895, lon: 139.6917 },
+    'Beijing': { lat: 39.9042, lon: 116.4074 },
+    'Moscow': { lat: 55.7558, lon: 37.6173 },
+    'Berlin': { lat: 52.5200, lon: 13.4050 },
+    'Sydney': { lat: -33.8688, lon: 151.2093 },
+    'São Paulo': { lat: -23.5505, lon: -46.6333 },
+    'Cairo': { lat: 30.0444, lon: 31.2357 },
+    'Johannesburg': { lat: -26.2041, lon: 28.0473 },
+    'Mumbai': { lat: 19.0760, lon: 72.8777 },
+    'Toronto': { lat: 43.6511, lon: -79.3832 },
+    'Mexico City': { lat: 19.4326, lon: -99.1332 },
+    'Buenos Aires': { lat: -34.6037, lon: -58.3816 },
+    'Istanbul': { lat: 41.0082, lon: 28.9784 },
+    'Rome': { lat: 41.9028, lon: 12.4964 },
+    'Dubai': { lat: 25.2760, lon: 55.2962 },
+    'Seoul': { lat: 37.5665, lon: 126.9780 },
+    'Frankfurt': { lat: 50.1109, lon: 8.6821 },
+    'Bangkok': { lat: 13.7563, lon: 100.5018 }
+};
+
+document.getElementById('city').addEventListener('input', function() {
+    const input = this.value.toLowerCase();
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = '';
+
+    if (input) {
+        const suggestions = Object.keys(coordinates).filter(city =>
+            city.toLowerCase().startsWith(input)
+        );
+
+        suggestions.forEach(city => {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.className = 'suggestion-item';
+            suggestionItem.textContent = city;
+            suggestionItem.addEventListener('click', () => {
+                document.getElementById('city').value = city;
+                suggestionsDiv.innerHTML = '';
+            });
+            suggestionsDiv.appendChild(suggestionItem);
+        });
+    }
+});
+
 document.getElementById('search').addEventListener('click', function() {
     const city = document.getElementById('city').value;
-
-    const coordinates = {
-        'New York': { lat: 40.7128, lon: -74.0060 },
-        'Los Angeles': { lat: 34.0522, lon: -118.2437 },
-        'London': { lat: 51.5074, lon: -0.1278 },
-        'Paris': { lat: 48.8566, lon: 2.3522 },
-        'Tokyo': { lat: 35.6895, lon: 139.6917 },
-        'Beijing': { lat: 39.9042, lon: 116.4074 },
-        'Moscow': { lat: 55.7558, lon: 37.6173 },
-        'Berlin': { lat: 52.5200, lon: 13.4050 },
-        'Sydney': { lat: -33.8688, lon: 151.2093 },
-        'São Paulo': { lat: -23.5505, lon: -46.6333 },
-        'Cairo': { lat: 30.0444, lon: 31.2357 },
-        'Johannesburg': { lat: -26.2041, lon: 28.0473 },
-        'Mumbai': { lat: 19.0760, lon: 72.8777 },
-        'Toronto': { lat: 43.6511, lon: -79.3832 },
-        'Mexico City': { lat: 19.4326, lon: -99.1332 },
-        'Buenos Aires': { lat: -34.6037, lon: -58.3816 },
-        'Istanbul': { lat: 41.0082, lon: 28.9784 },
-        'Rome': { lat: 41.9028, lon: 12.4964 },
-        'Dubai': { lat: 25.2760, lon: 55.2962 },
-        'Seoul': { lat: 37.5665, lon: 126.9780 },
-        'Frankfurt': { lat: 50.1109, lon: 8.6821 },
-        'Bangkok': { lat: 13.7563, lon: 100.5018 }
-    };
-    
 
     if (!coordinates[city]) {
         alert('City not found');
