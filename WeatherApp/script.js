@@ -21,7 +21,9 @@ document.getElementById('search').addEventListener('click', function() {
         'Istanbul': { lat: 41.0082, lon: 28.9784 },
         'Rome': { lat: 41.9028, lon: 12.4964 },
         'Dubai': { lat: 25.2760, lon: 55.2962 },
-        'Seoul': { lat: 37.5665, lon: 126.9780 }
+        'Seoul': { lat: 37.5665, lon: 126.9780 },
+        'Frankfurt': { lat: 50.1109, lon: 8.6821 },
+        'Bangkok': { lat: 13.7563, lon: 100.5018 }
     };
     
 
