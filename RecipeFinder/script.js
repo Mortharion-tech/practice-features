@@ -33,39 +33,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    const loading = document.getElementById('loading');
+
     async function searchRecipes() {
         if (ingredients.length === 0) return;
-
-        const apiKey = 'd306d0282b6b424da3eba43a68ada6df';
+        const apiKey = 'YOUR_API_KEY';
         const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients.join(',')}&number=10&apiKey=${apiKey}`;
-
+        loading.style.display = 'block';
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
-
             recipesContainer.innerHTML = '';
             data.forEach(recipe => {
                 const div = document.createElement('div');
                 div.classList.add('recipe');
-
                 const img = document.createElement('img');
                 img.src = recipe.image;
                 div.appendChild(img);
-
                 const title = document.createElement('h2');
                 title.textContent = recipe.title;
                 div.appendChild(title);
-
                 const link = document.createElement('a');
                 link.href = `https://spoonacular.com/recipes/${recipe.title}-${recipe.id}`;
                 link.textContent = 'View Recipe';
                 link.target = '_blank';
                 div.appendChild(link);
-
                 recipesContainer.appendChild(div);
             });
         } catch (error) {
             alert('Error fetching recipes!');
+        } finally {
+            loading.style.display = 'none';
         }
-    }
+    }    
 });
