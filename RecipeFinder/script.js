@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function searchRecipes() {
         if (ingredients.length === 0) return;
 
-        const apiKey = 'YOUR_API_KEY';
+        const apiKey = 'd306d0282b6b424da3eba43a68ada6df';
         const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients.join(',')}&number=10&apiKey=${apiKey}`;
 
         try {
