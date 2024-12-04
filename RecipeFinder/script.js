@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 recipesContainer.appendChild(div);
             });
         } catch (error) {
-            alert('Error fetching recipes!');
+            recipesContainer.innerHTML = '<p>Error fetching recipes. Please try again later.</p>';
+            console.error('Error:', error);
         } finally {
             loading.style.display = 'none';
         }
